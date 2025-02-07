@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mssql-configmap
+data:
+  init.sql: |
+    Create DataBase EchoTech;

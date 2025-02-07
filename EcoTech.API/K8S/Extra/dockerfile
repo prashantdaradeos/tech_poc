@@ -1,0 +1,15 @@
+# Use the base mssql server image
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Copy the initialization script into the container
+#COPY init.sql /scripts/init.sql
+#COPY runtime_configuration.sh /usr/local/bin/runtime_configuration.sh
+
+USER root
+COPY init.sql /scripts/init.sql
+COPY runtime_configuration.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/runtime_configuration.sh
+
+# Set the entrypoint to the custom script
+ENTRYPOINT ["/usr/local/bin/runtime_configuration.sh"]
+

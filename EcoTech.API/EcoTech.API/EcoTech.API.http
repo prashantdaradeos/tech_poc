@@ -1,0 +1,21 @@
+@EcoTech.API_HostAddress = http://localhost:5178
+
+
+
+
+###
+POST {{EcoTech.API_HostAddress}}/api/users/login
+Content-Type: application/json
+{"MobileNumber":"8999999999"}
+
+###
+
+POST {{EcoTech.API_HostAddress}}/api/users/check-otp
+Authorization:Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKWG5WQ2VmWkNRaFVVYmhYQ0RnZkFBPT0iLCJyb2xlIjoiTGVhZCIsImV4cCI6MTczMDM1Nzc0OSwiaWF0IjoxNzMwMzU3MTQ5LCJuYmYiOjE3MzAzNTcxNDl9.TciwdU_A1PlJmij131h7wa0CtG_6Db4FZlxzpGTlWBM
+Content-Type:application/json
+
+{
+  "MobileNumber": "8999999999",
+  "Otp": "12345"
+}
+

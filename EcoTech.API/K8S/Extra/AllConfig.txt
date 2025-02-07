@@ -1,0 +1,63 @@
+******* & minikube docker-env --shell powershell | Invoke-Expression
+        ######## This command configures your local environment to use Minikube's Docker daemon from Command Prompt (CMD).
+******* choco install docker-cli -y
+******* cd P:\PRASHANT\Study\Code\EchoTech\Src\EcoTech.API\K8S
+******* minikube start --memory=3072
+******* minikube start --network-plugin=cni --cni=calico
+******* kubectl apply -f secrets.yml
+******* kubectl apply -f mssql-statefulset.yml
+******* ./configuration.ps1 
+******* kubectl get ingress -n echotech
+******* kubectl get all -n echotech
+		##### To save image locally
+******* docker save -o echotech.tar prashantadarade/echotech-api:latest 
+******* docker load -i nginx_backup.tar
+
+		
+
+
+
+******* Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass         --- bypass policy for this session to execute below file
+                      ----- to set minikube ip in hosts file
+******* apt-get update && apt-get install -y mssql-tools unixodbc-dev  ------ install cmd for mssql
+******* find / -name sqlcmd
+******* export PATH=$PATH:/opt/mssql-tools/bin        ----   Set environment path for cmd
+******* sqlcmd -S localhost -U SA -P EchoTech@123      ----- login to mssql from cmd
+******* kubectl exec -it pod/echotech-api-depl-b44995f75-2pp4n -- sh
+*******  minikube service nginx-service --url
+
+
+
+
+******* minikube addons enable metallb -######## only for minikube, apply metallb config also
+        ######## protocol: layer2 in configmap of metallb - the IP range must belong to a network reachable via ARP (local subnet).
+        ######## IP range in configmap should be within minikube ip addresses range. Means only change 4th number in minikube ip
+        ######## protocol:BGV   -   for production
+        ######## For Production in On-Premises cluster
+******* kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.5/config/manifests/metallb-native.yaml
+******* kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.14.5/config/manifests/metallb-native.yaml
+******* kubectl get pods -n metallb-system     
+******* kubectl rollout restart deployment -n metallb-system metallb-controller
+******* kubectl rollout restart deployment -n metallb-system metallb-speaker
+******* kubectl create deployment test-nginx --image=nginx
+******* kubectl expose deployment test-nginx --port=80 --type=LoadBalancer --name=test-nginx
+******* helm install nginx-ingress --create-namespace -n nginx-ingress ingress-nginx/ingress-nginx --set "controller.extraArgs.enable-ssl-passthrough=true"
+
+
+
+******* minikube addons enable ingress - This will assign minikube ip to external ip for ngnix. Only for minikube
+######## To use cloud load balancer in production use this. This need metallb addon in mionikube to work
+******* kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+******* kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+******* kubectl get svc -n ingress-nginx
+******* kubectl get pods --namespace=ingress-nginx
+******* kubectl delete namespace ingress-nginx --grace-period=0 --force
+######## To delete earlier configuration for nginx-controller
+******* kubectl delete job ingress-nginx-admission-create -n ingress-nginx
+******* kubectl delete job ingress-nginx-admission-patch -n ingress-nginx
+
+
+
+HELM-------------------->
+******* helm repo add bitnami https://charts.bitnami.com/bitnami
+******* helm repo update

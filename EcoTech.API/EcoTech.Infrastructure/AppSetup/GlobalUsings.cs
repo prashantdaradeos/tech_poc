@@ -1,0 +1,10 @@
+﻿global using EcoTech.Domain.AppSetup;
+global using System.Data;
+global using System.Reflection;
+global using Microsoft.Data.SqlClient;
+global using EcoTech.Domain.UtilityEntities;
+global using Utf8Json;
+global using EcoTech.Domain.RepositoryContracts;
+global using EcoTech.Infrastructure.Repositories;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
