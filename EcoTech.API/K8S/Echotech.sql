@@ -55,9 +55,8 @@ CREATE  TABLE EchoTech_Clients(
 	IsActive bit NOT Null,
 	FreeTrialAvailed bit not null default 0,
 	 CONSTRAINT PK_EchoTech_Clients_ClientId Primary Key  (ClientId))
-	 
 
-Go	
+Go
 
 Create  Table EchoTech_Subscriptions(
 ClientSubId bigint Identity(1,1),
@@ -71,8 +70,8 @@ Constraint PK_EchoTech_Subscriptions_ClientSubId Primary Key (ClientSubId),
 Constraint FK_EchoTech_Subscriptions_ClientId Foreign Key (ClientId) References EchoTech_Clients(ClientId) on Delete Cascade,
 Constraint FK_EchoTech_Subscriptions_SubId Foreign Key (SubId) References EchoTech_Subscription_Types(SubId)
 )
-
-Go
+	 
+Go	
 
  CREATE  TABLE EchoTech_Users(
 	UserId bigint IDENTITY(1,1) NOT NULL,
@@ -93,12 +92,9 @@ Constraint FK_EchoTech_Users_ClientSubId Foreign Key (ClientSubId) References Ec
 
  
 
-
+Go
  
 
-
-
-Go
 
 
 Create Table EchoTech_Subscriptions_Consumed(
@@ -113,11 +109,23 @@ Constraint Fk_EchoTech_Subscriptions_Consumed_UserId Foreign Key (UserId) Refere
 
 
 
-
 Go
 
 
-Create OR Alter  Procedure [dbo].[USP_Get_Roles](
+
+Create  OR ALTER  Procedure USP_Log_Exceptions(
+@UniqueId nvarchar(31) =Null,
+@Information nvarchar(4000)=Null)
+
+AS
+Begin
+	Insert Into EchoTech_Logs(UniqueId,Information) Values (@UniqueId,@Information)
+End
+
+GO
+
+
+Create OR ALTER Procedure [dbo].[USP_Get_Roles](
 @MobileNumber bigint )
 
 As
@@ -138,26 +146,16 @@ Begin
 
 	
 
-	Select 1 As Result, 'User found with roles for given mobile number' As Message
-	Select RoleId From EchoTech_User_Roles where UserId=@UserId
+	Select 1 As Result,
+	(Select RoleName From EchoTech_Roles where RoleId=(Select RoleId From EchoTech_Users where UserId=@UserId))
+	As Message
+	
 
 End
 
 
 Go
 
-
-
-Create OR Alter  Procedure USP_Log_Exceptions(
-@UniqueId nvarchar(31) =Null,
-@Information nvarchar(4000)=Null)
-
-AS
-Begin
-	Insert Into EchoTech_Logs(UniqueId,Information) Values (@UniqueId,@Information)
-End
-
-Go
 
 Create OR Alter   PROCEDURE Usp_Manage_OTP(
     @Contact char(159) = NULL,  -- Optional, can be NULL
