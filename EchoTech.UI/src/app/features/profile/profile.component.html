@@ -1,0 +1,14 @@
+<div class="card">
+    <h2>{{'Profile.Profile' | translate}}</h2>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <h5>{{'Profile.Dropdown' | translate}}</h5>
+            <p-dropdown [options]="languages" [(ngModel)]="selectedLangauge" placeholder="Select a language"
+                (onChange)="onLanguageClick($event)" [showClear]="true"></p-dropdown>
+        </div>
+        <div class="col-12 md:col-4">
+            <h5>{{'Profile.Theme' | translate}}</h5>
+            <p-toggleButton [(ngModel)]="checked" onLabel="Dark" offLabel="Light"  (onChange)="onThemetoggle()" />
+        </div>
+    </div>
+</div>

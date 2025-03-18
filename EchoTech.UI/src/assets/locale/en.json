@@ -1,0 +1,19 @@
+{
+  "login": {
+    "Login": "Login",
+    "LogginIn": "Logging in..."
+  },
+  "manageUsers": {
+    "ManageUsers": "Manage Users"
+  },
+  "Menu": {
+    "Dashboard": "Dashboard",
+    "ManageUsers": "Manage Users",
+    "Logout": "Logout"
+  },
+  "Profile": {
+    "Profile": "Confiure Profile",
+    "Dropdown": "Select Language",
+    "Theme": "Select Theme"
+  }
+}

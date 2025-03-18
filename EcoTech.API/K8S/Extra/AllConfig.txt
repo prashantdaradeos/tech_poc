@@ -1,7 +1,7 @@
 ******* & minikube docker-env --shell powershell | Invoke-Expression
         ######## This command configures your local environment to use Minikube's Docker daemon from Command Prompt (CMD).
 ******* choco install docker-cli -y
-******* cd P:\PRASHANT\Study\Code\EchoTech\Src\EcoTech.API\K8S
+******* cd P:\PRASHANT\Study\Code\Tech_Poc\Src\EcoTech.API\K8S
 ******* minikube start --memory=3072
 ******* minikube start --network-plugin=cni --cni=calico
 ******* kubectl apply -f secrets.yml
@@ -14,7 +14,7 @@
 ******* docker load -i nginx_backup.tar
 
 		
-
+ 
 
 
 ******* Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass         --- bypass policy for this session to execute below file
